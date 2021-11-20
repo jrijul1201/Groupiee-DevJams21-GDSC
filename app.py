@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from werkzeug.local import F
 from passlib.hash import sha256_crypt
 from datetime import datetime
+from functools import wraps
 
 import secrets
 import string
@@ -13,12 +14,22 @@ app = Flask(__name__)
 app.config['MONGO_URI'] = "mongodb+srv://Wahhaj:3DS8ai8B7j7f989@cluster0.4eydy.mongodb.net/users_devjams21?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
+# Check if user is logged in
+def is_logged_in(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash('Unauthorized, please login', 'danger')
+            return redirect(url_for('login'))
+    return wrap
+
 # The home page
 @app.route('/')
 def home():
     return render_template("home.html")
 
-# TODO: Add flash messages
 # The sign up page
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -34,9 +45,9 @@ def register():
         pfp = request.files['profile_image']
         res = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
                                                   for i in range(4))
-        pfp_src = pfp.filename + username + res
+        pfp_src = username + res + pfp.filename
         mongo.save_file(pfp_src, pfp)
-        mongo.db.user_info.insert_one({'username': username, 'password': password,'email': email, 'phone': phone, 'city': city, 'date_of_join': datetime.now(), 'pfp_src': pfp_src})
+        mongo.db.user_info.insert_one({'username': username, 'password': password, 'full_name': full_name ,'email': email, 'phone': phone, 'city': city, 'date_of_join': datetime.now(), 'pfp_src': pfp_src})
         
         # Redirect user to login
         return redirect(url_for('login'))
@@ -53,9 +64,12 @@ def login():
         pwd_candidate = request.form.get('pwd')
 
         user_data = mongo.db.user_info.find_one({'username' : username})
-        pwd = user_data.get('password')
+        if user_data:
+            pwd = user_data.get('password')
+        else:
+            pwd = None
 
-        if sha256_crypt.verify(pwd_candidate, pwd):
+        if pwd and sha256_crypt.verify(pwd_candidate, pwd):
             session['username'] = username
             session['logged_in'] = True
             return redirect(url_for('index'))
@@ -68,10 +82,20 @@ def login():
 
     return render_template("login.html")
 
+# Link to images
+@app.route('/file/<filename>')
+def file(filename):
+    return mongo.send_file(filename)
+
 # The dashboard
+@is_logged_in
 @app.route('/index')
 def index():
-    return render_template("index.html")
+    username = session['username']
+    user_data = mongo.db.user_info.find_one({'username': username})
+    pfp_src = user_data.get('pfp_src')
+    full_name = user_data.get('full_name')
+    return render_template("index.html", username = full_name, pfp_src = pfp_src)
 
 @app.route('/profile/<username>')
 def profile(username):
