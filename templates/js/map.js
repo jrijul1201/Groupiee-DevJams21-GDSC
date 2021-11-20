@@ -30,7 +30,7 @@ function onMouseClick(e){
     fetch(`https://nominatim.openstreetmap.org/reverse?lat=${e.latlng.lat}&lon=${e.latlng.lng}&format=json`)
     .then(response=>response.json())
     .then(data=>{
-        marker.bindPopup(`Country: ${data.address.country}<br>City: ${data.address.city?data.address.city:'Unknown'}`).openPopup();
+          marker.bindPopup(`Country: ${data.address.country}<br>City: ${data.address.city?data.address.city:'Unknown'}`).openPopup();
     })
 
     
