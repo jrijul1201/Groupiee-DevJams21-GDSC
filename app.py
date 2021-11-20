@@ -40,8 +40,21 @@ def register():
     return render_template("signup.html")
 
 # The login page
-@app.route('/login')
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        username = request.form.get('uname')
+        pwd_candidate = request.form.get('pwd')
+
+        pwd = mongo.db.user_info.find_one({'username' : username})
+
+        if sha256_crypt.verify(pwd_candidate, pwd):
+            session['username'] = username
+            session['logged_in'] = True
+            return redirect(url_for('home'))
+
+
+
     return render_template("login.html")
 
 # The dashboard
