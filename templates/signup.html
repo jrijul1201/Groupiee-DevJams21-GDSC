@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <!-- Compiled and minified CSS -->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+         <!-- Compiled and minified JavaScript -->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+                 
+        <title>Groupiee</title>
+    </head>
+<body>
+    <!--SignUp form-->
+    <div class="row">
+        <div id='form' class="col s12 m4 offset-m4"> 
+            <form action="" method="post">
+            <div class="card">
+                <div class="card-action blue lighten-1 white-text">
+                    <h3>SignUp</h3>
+                </div>
+                <div class="card-content">
+                    <div class="form-field">
+                        <label for="email">Email:</label>
+                        <input type="email" id="uname" name = "uname">
+                    </div>
+                    <div class="form-field">
+                        <label for="password" >Password:</label>
+                    <input type="password" id="pwd" name = "pwd">
+                    </div>
+                    <div class="form-field">
+                        <label for="phoneno" >Phone:</label>
+                    <input type="number" id="phoneno" name = "phoneno">
+                    </div>
+                    <div class="form-field">
+                        <label for="city" >City:</label>
+                    <input type="text" id="city" name = "city">
+                    </div>
+                    <div class="form-field center">
+                        <button type="submit" id="submitbtn" onclick="signup()"
+                        class="btn-large waves-effect waves-dark">Submit</button>
+                
+                    </div>
+                    
+                </div>
+            </div>
+            </form>
+        </div>
+        <!--To be shown incase an error occures-->
+        <div id="err" class="col s12 m4 offset-m4">
+            <div class="card red white-text">
+                <div class="card-content">
+                    Error! user not found
+                </div>
+                </div>
+        </div>
+        
+
+    </div>
+   
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <!-- Compiled and minified CSS -->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+         
+         <!-- Compiled and minified JavaScript -->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+                 
+        <title>Groupiee</title>
+    </head>
+<body class="grey lighten-3">
+     <!--Nav bar-->
+     <nav>
+        <div class="nav-wrapper blue lighten-1">
+            <a href="#" class="brand-logo">Groupiee</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="index.html">Home</a></li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col m3">
+        
+            <div class="card">
+                <div class="card-image">
+
+                        <img src="/file/{{pfp_src}}">
+                  
+                </div>
+                <div class="card-content">
+                    <!--The Name and other stuff-->
+                    <div class="card-title">{{username}}</div>
+                        <!--Followers and following-->
+                    Followers: 10  Following: 20<br> 
+                    <!--
+                     Email button but not really needed :p
+                     <button id="Email"
+                     class="btn-small waves-effect waves-dark red">
+                     <a class="white-text" href="mailto: testemail@gmail.com"> Email</a></button>-->
+                    <br>
+                   
+                </div>
+        
+            </div>
+        
+        </div>
+        
+        <div class="col m9">
+
+            <div class="row">
+                <!--Showing potential travel buddies-->
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">People with similar interests</div>
+                    </div>
+                    <!--In the future this will be AI generated.
+                    Clicking on the pics will lead to their respective profiles-->
+                    <a href="#meow">
+                        <img src="../assets/sample_1.jpg" alt="" class="circle" style="width:100px; height:100px; margin: 10px;">
+                    </a>
+                    <a href="#hic">
+                        <img src="../assets/andaman_sample.png" alt="" class="circle" style="width:100px; height:100px; margin: 10px;">
+                    </a>
+                    <a href="#bruh">
+                        <img src="../assets/mumbai_sample.png" alt="" class="circle" style="width:100px; height:100px; margin: 10px;">
+                    </a>
+                    <a href="#miao">
+                        <img src="../assets/shimla_sample.png" alt="" class="circle" style="width:100px; height:100px; margin: 10px;">
+                    </a>
+                    
+                    
+                    
+
+                </div>
+                <!--Desitation recommendations. 
+            In the future this will be randomly generated-->
+            <div class="card">
+                <div class="card-content">
+                   <div class="card-title">Popular Destinations</div>
+                </div>
+                
+                <!--Vellore-->
+                <div class="card horizontal">
+                    <div class="card-image">
+                        <img src="../assets/vellore_sample.png" alt="">
+                        
+                    </div>
+                    <div class="card-content">
+                       <div class="card-title">Vellore</div>
+                        <p>
+                            Vellore is a city
+                            in the Indian state of Tamil Nadu. It is located on the banks of the Palar River in the northeastern part 
+                            of Tamil Nadu.
+                        </p>
+                        <button id="followbtn" onclick="signup()"
+                        class="btn-small waves-effect waves-dark red">Add</button>
+                    </div>
+            
+                </div>
+                <!--Mumbai-->
+                <div class="card horizontal">
+                    <div class="card-image">
+                        <img src="../assets/mumbai_sample.png" alt="">
+                        
+                    </div>
+                    <div class="card-content">
+                       <div class="card-title">Mumbai</div>
+                        <p>
+                            Mumbai lies at the mouth of the Ulhas River on the western coast of India, 
+                            in the coastal region known as the Konkan.</p>
+                        <button id="followbtn" onclick="signup()"
+                        class="btn-small waves-effect waves-dark red">Add</button>
+                    </div>
+            
+                </div>
+                 <!--Andaman-->
+                 <div class="card horizontal">
+                    <div class="card-image">
+                        <img src="../assets/andaman_sample.png" alt="">
+                        
+                    </div>
+                    <div class="card-content">
+                       <div class="card-title">Andaman</div>
+                        <p>
+                            This tropical rain forest, despite its isolation from adjacent landmasses, 
+                            is surprisingly rich with a diversity of animal life.</p>
+                        <button id="followbtn" onclick="signup()"
+                        class="btn-small waves-effect waves-dark red">Add</button>
+                    </div>
+            
+                </div>
+                 <!--Shimla-->
+                 <div class="card horizontal">
+                    <div class="card-image">
+                        <img src="../assets/shimla_sample.png" alt="">
+                        
+                    </div>
+                    <div class="card-content">
+                       <div class="card-title">Shimla</div>
+                        <p>
+                            Simla, is the capital and the largest city of the Northern Indian state of Himachal Pradesh. 
+                            Shimla used to be the summer capital of British India.</p>
+                        <button id="followbtn" onclick="signup()"
+                        class="btn-small waves-effect waves-dark red">Add</button>
+                    </div>
+            
+                </div>
+
+                </div>
+            </div>
+        
+        
+        </div>
+
+
+
+    </div>
+
+</body>
+</html>

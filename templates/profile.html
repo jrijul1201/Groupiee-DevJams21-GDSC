@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <!-- Compiled and minified CSS -->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+         <!--Font Awesome icons for materialize-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Compiled and minified JavaScript -->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+                 
+        <title>Groupiee</title>
+    </head>
+<body class="grey lighten-3">
+     <!--Nav bar-->
+     <nav>
+        <div class="nav-wrapper blue lighten-1">
+            <a href="#" class="brand-logo">Groupiee</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="index.html">Home</a></li>
+                <!--Sign in buttons-->
+                <li style="padding-bottom: 5px;padding-top: 5px;"><a href="index.html" style="background-color: red; border-radius: 20%; height: 55px;">Sign in</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col s12 m4">
+        
+            <div class="card">
+        
+                <div class="card-content center">
+                    <div class="center">
+                        <img src="../assets/sample_1.jpg"  style="width: 200px; height: 200px;border-radius: 50%;">
+                    </div>
+                    <!--The Name and other stuff-->
+                    <div class="card-title">
+                        <h4>Sankhayan Bhattacharjee</h4>
+                        </div>
+                        <!--Followers and following-->
+                        <div>
+                            <div>
+                               <h5>Followers: 10 Following: 20</h5> 
+                            </div>
+                            <div>
+                                <h6>Rating: 5 stars</h6>
+                                
+                            </div>
+                        </div>
+                        
+                      
+                    <div>
+                        <button id="followbtn"
+                        class="btn-small waves-effect waves-dark red">Follow</button>
+                        
+                    </div>
+                    <!--For contatining user data like phone number and email-->
+                    <div class="card">
+                        <div class="card-content">
+                            <!--<i class="material-icons">call</i> gives a call icon and so on-->
+                             <h5><i class="material-icons">call</i> 1234567890</h5>
+                            <h5><i class="material-icons">email</i> testemail@gmail.com</h5>
+                            <h5><i class="material-icons">location_on</i>Kolkata</h5>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col m8">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">Places Visited</div>
+                        <!--This will be dynamically generated in the future-->
+                        <!--Vellore-->
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <img src="../assets/vellore_sample.png" alt="">
+                            
+                        </div>
+                        <div class="card-content">
+                           <div class="card-title">Vellore</div>
+                            <p>
+                                Vellore is a city
+                                in the Indian state of Tamil Nadu. It is located on the banks of the Palar River in the northeastern part 
+                                of Tamil Nadu.
+                            </p>
+                            <button id="followbtn" onclick="signup()"
+                            class="btn-small waves-effect waves-dark red">Add</button>
+                        </div>
+                
+                    </div>
+    
+                     <!--Mumbai-->
+                     <div class="card horizontal">
+                        <div class="card-image">
+                            <img src="../assets/mumbai_sample.png" alt="">
+                            
+                        </div>
+                        <div class="card-content">
+                           <div class="card-title">Mumbai</div>
+                            <p>
+                                Mumbai lies at the mouth of the Ulhas River on the western coast of India, 
+                                in the coastal region known as the Konkan.</p>
+                            <button id="followbtn" onclick="signup()"
+                            class="btn-small waves-effect waves-dark red">Add</button>
+                        </div>
+                
+                    </div>
+    
+                    </div>
+                </div>
+            
+            </div>
+            </div>
+        </div>
+           
+    
+
+
+</body>
+</html>
