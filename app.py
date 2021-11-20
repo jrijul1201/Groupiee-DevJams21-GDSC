@@ -99,7 +99,13 @@ def index():
 
 @app.route('/profile/<username>')
 def profile(username):
-    return render_template("profile.html")
+    user_data = mongo.db.user_info.find_one({'username': username})
+    full_name = user_data.get('full_name')
+    phone = user_data.get('phone')
+    email = user_data.get('email')
+    city = user_data.get('city')
+    pfp_src = user_data.get('pfp_src')
+    return render_template("profile.html", name = full_name, phone = phone, email = email, city = city, pfp_src = pfp_src)
 
 # Running the program
 if __name__ == '__main__':
