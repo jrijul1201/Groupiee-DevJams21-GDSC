@@ -16,7 +16,7 @@
     <!--SignUp form-->
     <div class="row">
         <div id='form' class="col s12 m4 offset-m4"> 
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
             <div class="card">
                 <div class="card-action blue lighten-1 white-text">
                     <h3>SignUp</h3>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-field">
                         <label for="profile_image">Profile Pic:</label>
-                        <input type="file" name="profile_image">
+                        <input type="file" name="profile_image" enctype >
                     </div>
                     <div class="form-field center">
                         <button type="submit" id="submitbtn" onclick="signup()"

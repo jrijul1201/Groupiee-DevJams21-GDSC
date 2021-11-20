@@ -44,6 +44,7 @@ def register():
 
     return render_template("signup.html")
 
+#TODO: Add a check for whether user is logged in 
 # The login page
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -51,12 +52,17 @@ def login():
         username = request.form.get('uname')
         pwd_candidate = request.form.get('pwd')
 
-        pwd = mongo.db.user_info.find_one({'username' : username})
+        user_data = mongo.db.user_info.find_one({'username' : username})
+        pwd = user_data.get('password')
 
         if sha256_crypt.verify(pwd_candidate, pwd):
             session['username'] = username
             session['logged_in'] = True
             return redirect(url_for('index'))
+        
+        else:
+            app.logger.info("Login failed")
+            flash(message="Incorrect username or password", category='error')
 
 
 
