@@ -1,8 +1,12 @@
+from logging import DEBUG
 from flask import Flask, render_template, flash, redirect, url_for, session,logging, request
 from flask_pymongo import PyMongo
 from werkzeug.local import F
 from passlib.hash import sha256_crypt
 from datetime import datetime
+
+import secrets
+import string
 
 # Configuration
 app = Flask(__name__)
@@ -15,8 +19,24 @@ def home():
     return render_template("home.html")
 
 # The sign up page
-@app.route('/register')
+@app.route('/register', methods = ['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = sha256_crypt.hash(str(request.form['password'])) # hashing the password
+        email = request.form['email']
+        phone = request.form['phone']
+        city = request.form['city']
+
+        # Save profile pic file
+        pfp = request.files['profile_image']
+        res = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
+                                                  for i in range(4))
+        pfp_src = pfp.filename + username + res
+        mongo.save_file(pfp_src, pfp)
+        mongo.db.user_info.insert_one({'username': username, 'password': password,'email': email, 'phone': phone, 'city': city, 'date_of_join': datetime.now(), 'pfp_src': pfp_src})
+
+
     return render_template("signup.html")
 
 # The login page
