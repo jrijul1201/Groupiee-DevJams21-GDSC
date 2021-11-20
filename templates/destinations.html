@@ -10,9 +10,9 @@
          <!-- Compiled and minified JavaScript -->
          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-
-         <!--Needed for google Maps?-->
-         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+         <!--Leaflet stuff-->
+         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
                  
         <title>Groupiee</title>
     </head>
@@ -28,13 +28,23 @@
             </ul>
         </div>
     </nav>
-    <input
-      id="pac-input"
-      class="controls"
-      type="text"
-      placeholder="Search Box"
-    />
-    <div id="map"></div>
-
+    <div class="row">
+        <div class="col m4 offset-m2">
+            
+            
+            
+              <h4>Search for your destination</h4>  
+            <div class="inputfield" style="width: 1000px;">
+                <input type="text" placeholder="Search">
+            </div>
+                    <!--Map stuff-->
+            <div id="map" class="center" style="height:500px;width: 1000px;"></div>
+            <script src="./js/map.js"></script>
+            
+     
+        </div>
+    </div>
+    
+    
 </body>
 </html>
