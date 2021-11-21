@@ -38,11 +38,11 @@ function Search(){
                 </div>
                 <div class="col m3">
                     <i class="medium material-icons">flight_takeoff</i><br>
-                    19:00
+                    unavailable
                 </div>
                 <div class="col m3">
                     <i class="medium material-icons">flight_land</i><br>
-                    20:00
+                    unavailable
                 </div>
                 <div class="col m3">
                 <button
