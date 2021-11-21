@@ -49,11 +49,14 @@
             
               <h4>Search for your destination</h4>  
             <div class="inputfield" style="width: 1000px;">
-               
-                    <input type="text" id="searchbar" placeholder="Search">
-                <button id="search" onclick="onSearch()"
+                <form action="" method="post">
+                    <input name="name" type="text" id="searchbar" placeholder="Search">
+                <button type="button" id="search" onclick="onSearch()"
                      class="btn-small waves-effect waves-dark red">
                       Search</a></button>
+                      <input type="text" name="description" id="" class="validate" placeholder="Enter a short description of your destination">
+                      <button class="btn-small waves-effect waves-dark red" type="submit">Add Destination</button>
+                </form>
            
                 
             </div>

@@ -196,7 +196,7 @@ def add_destination():
     if request.method == 'POST':
         name = request.form.get('name')
         description = request.form.get('description')
-        app.logger.info(description)
+        #app.logger.info(description)
 
         image = request.files.get('image')
         res = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
@@ -209,9 +209,25 @@ def add_destination():
     return render_template('add_destination.html')
 
 
-@app.route('/search_destination')
+@app.route('/search_destination', methods = ['GET', 'POST'])
 @is_logged_in
 def search_destination():
+    if request.method == 'POST':
+        # Create destination
+        name = request.form.get('name')
+        name_split = name.split(',')
+        if name_split[0] == 'Unknown':
+            name = name[8:]
+        description = request.form.get('description')
+        mongo.db.destinations.insert_one({'name': name, 'description': description})
+
+        # Add user to destination
+        username = session['username']
+        mongo.db.destinations.update_one({'name': name}, {'$addToSet': {'users': username}})
+        mongo.db.user_info.update_one({'username': username}, {'$addToSet':{'visiting': name}})
+        flash('Added to Visiting', 'success')
+        return redirect(url_for('index'))
+        
     return render_template('search.html')
 
 @app.route('/bookings')
