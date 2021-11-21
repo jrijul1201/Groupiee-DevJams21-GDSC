@@ -21,7 +21,7 @@
         <div class="nav-wrapper blue lighten-1">
             <a href="#" class="brand-logo">Groupiee</a>
             <ul id="nav-mobile" class="right">
-                <li><a href="/search_destinaion">Destinations</a></li>
+                <li><a href="/search_destination">Destinations</a></li>
                 <li><a href="/index">Home</a></li>
                 <!--Sign in buttons-->
                 {% if session['logged_in'] == False %}
@@ -66,7 +66,7 @@
                         <button id="followbtn"
                         class="btn-small waves-effect waves-dark red">Follow</button>
                         <button id="chatbtn"
-                        class="btn-small waves-effect waves-dark red"><a href="https://api.whatsapp.com/send?phone={{phone}}"">Chat</a></button>
+                        class="btn-small waves-effect waves-dark red">Chat</button>
                     </div>
                     <!--For contatining user data like phone number and email-->
                     <div class="card">
