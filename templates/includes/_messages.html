@@ -1,6 +1,7 @@
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     {% for category, message in messages %}
+    {% if category == 'error' %}
     <div id="err" class="col s12 m4 offset-m4">
         <div class="card red white-text">
             <div class="card-content">
@@ -8,6 +9,18 @@
             </div>
             </div>
     </div>
+    {% endif %}
+
+    {% if category == 'success' %}
+    <div id="err" class="col s12 m4 offset-m4">
+        <div class="card red white-text">
+            <div class="card-content">
+                {{message}}
+            </div>
+            </div>
+    </div>
+    {% endif %}
+
     {% endfor %}
   {% endif %}
 {% endwith %}

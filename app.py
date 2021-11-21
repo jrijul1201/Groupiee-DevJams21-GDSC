@@ -14,6 +14,14 @@ app = Flask(__name__)
 app.config['MONGO_URI'] = "mongodb+srv://Wahhaj:3DS8ai8B7j7f989@cluster0.4eydy.mongodb.net/users_devjams21?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
+#TODO: Verify Users
+#TODO: Functional prototype instead of basic web app with mock data
+#TODO: DMs
+#TODO: Make posts for each user
+#TODO: Add delete button for places in profile
+#TODO: Make the ADD button function for places in user profiles
+#TODO: Make the profile list places visiting
+
 # Check if user is logged in
 def is_logged_in(f):
     @wraps(f)
@@ -129,7 +137,7 @@ def index():
 # View profiles of other users
 @app.route('/profile/<username>')
 def profile(username):
-    user_data = mongo.db.user_info.find_one({'username': username})
+    user_data = mongo.db.user_info.find_one_or_404({'username': username})
     full_name = user_data.get('full_name')
     phone = user_data.get('phone')
     email = user_data.get('email')
@@ -161,7 +169,7 @@ def add_user_to_destination():
     mongo.db.destinations.update_one({'name': dest_name}, {'$addToSet': {'users': username}})
     mongo.db.user_info.update_one({'username': username}, {'$addToSet':{'visiting': dest_name}})
     flash('Added to Visiting', 'success')
-    return redirect(url_for('destinations'))
+    return redirect(url_for('index'))
 
 #TODO: implement deleting users from destination
 @app.route('/delete_user_from_destination', methods = ['POST'])
@@ -171,7 +179,7 @@ def delete_user_from_destination():
     mongo.db.destinations.update_one({'name': dest_name}, {'$pull': {'users': username}})
     mongo.db.user_info.update_one({'username': username}, {'$pull':{'visiting': dest_name}})
     flash('Removed from Visiting', 'success')
-    return redirect(url_for('destinations'))
+    return redirect(url_for('index'))
 
 
 @app.route('/add_destination', methods = ['GET', 'POST'])
@@ -180,6 +188,7 @@ def add_destination():
     if request.method == 'POST':
         name = request.form.get('name')
         description = request.form.get('description')
+        app.logger.info(description)
 
         image = request.files.get('image')
         res = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
@@ -201,6 +210,14 @@ def search_destination():
 @is_logged_in
 def bookings():
     return render_template('bookings.html')
+
+
+# Testing CKEditor
+@app.route('/ckeditor', methods = ['GET', 'POST'])
+def ckeditor():
+    if request.method == 'POST':
+        app.logger.info(request.form.get('description'))
+    return render_template('CKEditorTest.html')
 
 
 # Running the program

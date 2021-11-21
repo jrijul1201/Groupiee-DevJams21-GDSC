@@ -30,6 +30,8 @@
         </div>
     </nav>
 
+    {% include 'includes/_messages.html' %}
+
     <!--Flight booking button-->
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large red" href="bookings">
@@ -162,10 +164,15 @@
                     {% for destination in visiting_destinations %}
                     <div class="card horizontal">
                         <div class="card-content">
+                            <form method="post" action="/delete_user_from_destination">
                             <div class="card-title">
+                                <input name="name" type="hidden" value="{{destination['name']}}">
                                 {{destination['name']}}
                             </div>
                             {{destination['description']}}
+                            <br>
+                            <button type="submit" class="btn-small waves-effect waves-dark red">Remove</button>
+                        </form>
                         </div>
                     </div>
                     {% endfor %}
