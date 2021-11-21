@@ -63,7 +63,8 @@
                     <div>
                         <button id="followbtn"
                         class="btn-small waves-effect waves-dark red">Follow</button>
-                        
+                        <button id="chatbtn"
+                        class="btn-small waves-effect waves-dark red"><a href="https://api.whatsapp.com/send?phone={{phone}}"">Chat</a></button>
                     </div>
                     <!--For contatining user data like phone number and email-->
                     <div class="card">
@@ -98,7 +99,7 @@
                                 in the Indian state of Tamil Nadu. It is located on the banks of the Palar River in the northeastern part 
                                 of Tamil Nadu.
                             </p>
-                            <button id="followbtn" onclick="signup()"
+                            <button id="followbtn"
                             class="btn-small waves-effect waves-dark red">Add</button>
                         </div>
                 
@@ -115,7 +116,7 @@
                             <p>
                                 Mumbai lies at the mouth of the Ulhas River on the western coast of India, 
                                 in the coastal region known as the Konkan.</p>
-                            <button id="followbtn" onclick="signup()"
+                            <button id="followbtn"
                             class="btn-small waves-effect waves-dark red">Add</button>
                         </div>
                 
@@ -128,8 +129,19 @@
             </div>
         </div>
            
+    <!-- minified snippet to load TalkJS without delaying your page -->
+<script>
+    (function(t,a,l,k,j,s){
+    s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
+    ;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
+    .push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
+    </script>
     
+    <!-- container element in which TalkJS will display a chat UI -->
+    <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px">
+      <i>Loading chat...</i>
+    </div>
 
-
+    <script src="{{url_for('static', filename='chat.js')}}"></script>
 </body>
 </html>

@@ -9,7 +9,12 @@
     
          <!-- Compiled and minified JavaScript -->
          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-                 
+         <!--International phone input-->
+         <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+       />
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
         <title>Groupiee</title>
     </head>
 <body>
@@ -40,7 +45,7 @@
                     </div>
                     <div class="form-field">
                         <label for="phoneno" >Phone:</label>
-                    <input type="number" id="phoneno" name = "phoneno">
+                    <input type="tel" id="phoneno" name = "phoneno">
                     </div>
                     <div class="form-field">
                         <label for="city" >City:</label>
