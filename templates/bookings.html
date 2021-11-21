@@ -40,158 +40,54 @@ In the future this will interface with a travel API-->
             <div class="card-content">
                 <div class="row">
                     <div class="input-field col s2">
-                        <select>
-                            <option value="" disabled selected>From</option>
-                            <option value="1">Kolkata(CCU)</option>
-                            <option value="2">Agartala(IXA)</option>
-                            <option value="3">Mumbai(BOM)</option>
-                            <option value="4">Delhi(DEL)</option>
+                        <select id="departure">
+                            <option value="0" selected>New York City(NYC)</option>
+                            <option value="1">Moscow(MOW)</option>
+                            <option value="2">Kolkata(CCU)</option>
+                            <option value="3">Delhi(DEL)</option>
+                            <option value="4">Mumbai(BOM)</option>
                             <option value="5">Chennai(MAA)</option>
                           </select>
                          
                     </div>
                     <div class="input-field col s2">
-                        <select>
-                            <option value="" disabled selected>To</option>
-                            <option value="1">Kolkata(CCU)</option>
-                            <option value="2">Agartala(IXA)</option>
-                            <option value="3">Mumbai(BOM)</option>
-                            <option value="4">Delhi(DEL)</option>
+                        <select id="arrival">
+                            <option value="0">New York City(NYC)</option>
+                            <option value="1" selected>Moscow(MOW)</option>
+                            <option value="2">Kolkata(CCU)</option>
+                            <option value="3">Delhi(DEL)</option>
+                            <option value="4">Mumbai(BOM)</option>
                             <option value="5">Chennai(MAA)</option>
                           </select>
                          
                     </div>
+                    <!--Departure-->
                     <div class="input-field col s2">
-                        <input type="date">
+                        <input type="date" id="depart_date" placeholder="yyyy-mm-dd">
+                    </div>
+                    <!--Travellers-->
+                    <div class="input-field col s2">
+                        <input type="number" id="travellers" placeholder="Travellers">
                     </div>
                     <div class="input-field col s2">
-                        <input type="date">
-                    </div>
-                    <div class="input-field col s2">
-                        <input type="number" placeholder="Travellers">
-                    </div>
-                    <div class="input-field col s2">
-                        <select>
+                        <select id="cabin_class">
                             <option value="1" selected>Economy</option>
                             <option value="2">Prem. Economy</option>
                             <option value="3">Business</option>
                           </select>
                          
                     </div>
+                    <div class="input-field col s2">
+                        <button onclick="Search()">Search</button>
+                    </div>
                 </div>
                 
             </div>
         </div>
-        <!--Flights CURRENTLY STATIC BUT WILL BE DYNAMICALLY GENERATED IN THE FUTURE-->
-        <!--Test1 Airlines-->
-        <div class="card">
-            <div class="card-content">
-                <div class="card-title">
-                    <div class="row">
-                        <div class="col m3">
-                           Test1 Airline
-                        </div>
-                        <div class="col m3">
-                            <i class="medium material-icons">flight_takeoff</i><br>
-                            11:00
-                        </div>
-                        <div class="col m3">
-                            <i class="medium material-icons">flight_land</i><br>
-                            12:00
-                        </div>
-                        <div class="col m3">
-                            Rs 2000
-                        </div>
-                    </div>
-                    
-                </div>
-                
-                </div>
-        </div>
-        <!--Test2 Airlines-->
-        <div class="card">
-            <div class="card-content">
-                <div class="card-title">
-                    <div class="row">
-                        <div class="col m3">
-                            Test2 Airline
-                        </div>
-                        <div class="col m3">
-                            <i class="medium material-icons">flight_takeoff</i><br>
-                            13:00
-                        </div>
-                        <div class="col m3">
-                            <i class="medium material-icons">flight_land</i><br>
-                            14:00
-                        </div>
-                        <div class="col m3">
-                            Rs 1700
-                        </div>
-                    </div>
-                    
-                </div>
-                
-                </div>
-        </div>
-
-        <!--Test3 Airlines-->
-        <div class="card">
-            <div class="card-content">
-                <div class="card-title">
-                    <div class="row">
-                        <div class="col m3">
-                            Test3 Airline
-                        </div>
-                        <div class="col m3">
-                            <i class="medium material-icons">flight_takeoff</i><br>
-                            18:00
-                        </div>
-                        <div class="col m3">
-                            <i class="medium material-icons">flight_land</i><br>
-                            19:00
-                        </div>
-                        <div class="col m3">
-                            Rs 1500
-                        </div>
-                    </div>
-                    
-                </div>
-                
-            </div>
-        </div>
-
-        <!--Test4 Airlines-->
-        <div class="card">
-            <div class="card-content">
-                <div class="card-title">
-                    <div class="row">
-                        <div class="col m3">
-                            Test4 Airline
-                        </div>
-                        <div class="col m3">
-                            <i class="medium material-icons">flight_takeoff</i><br>
-                            19:00
-                        </div>
-                        <div class="col m3">
-                            <i class="medium material-icons">flight_land</i><br>
-                            20:00
-                        </div>
-                        <div class="col m3">
-                            Rs 1000
-                        </div>
-                    </div>
-                    
-                </div>
-                
-                </div>
-        </div>
-
-
     </div>
+        <!--Flights Currently Listing capibilities possible-->
+        <div id="airlines" class="col m12"></div>
 
-    
-    
-    <script src="./js/bookings.js"></script>
     <script src="{{url_for('static', filename='bookings.js')}}"></script>
 </body>
 </html>
