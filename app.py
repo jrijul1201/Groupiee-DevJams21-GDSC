@@ -107,7 +107,6 @@ def upload_files():
         mongo.save_file(image.filename, image)
     return render_template('upload_image.html')
 
-#TODO: Pass visiting places to the index
 # The dashboard
 @app.route('/index')
 @is_logged_in
@@ -116,9 +115,16 @@ def index():
     user_data = mongo.db.user_info.find_one({'username': username})
     pfp_src = user_data.get('pfp_src')
     full_name = user_data.get('full_name')
-    return render_template("index.html", username = full_name, pfp_src = pfp_src)
+    # Get names of places user plans to visit
+    visiting_list = user_data.get('visiting')
+    # Get data from those place
+    visiting_destinations = []
+    for i in visiting_list:
+        place_data = mongo.db.destinations.find_one({'name': i})
+        visiting_destinations.append(place_data)
+    return render_template("index.html", username = full_name, pfp_src = pfp_src, visiting_destinations = visiting_destinations)
 
-#TODO: Pass visiting places to the profile
+
 # View profiles of other users
 @app.route('/profile/<username>')
 def profile(username):
@@ -128,7 +134,15 @@ def profile(username):
     email = user_data.get('email')
     city = user_data.get('city')
     pfp_src = user_data.get('pfp_src')
-    return render_template("profile.html", name = full_name, phone = phone, email = email, city = city, pfp_src = pfp_src)
+    # Get names of places user plans to visit
+    visiting_list = user_data.get('visiting')
+    # Get data from those place
+    visiting_destinations = []
+    for i in visiting_list:
+        place_data = mongo.db.destinations.find_one({'name': i})
+        visiting_destinations.append(place_data)
+
+    return render_template("profile.html", name = full_name, phone = phone, email = email, city = city, pfp_src = pfp_src, visiting_destinations = visiting_destinations)
 
 @app.route('/destinations', methods = ['GET', 'POST'])
 @is_logged_in
@@ -147,7 +161,7 @@ def add_user_to_destination():
     flash('Added to Visiting', 'success')
     return redirect(url_for('destinations'))
 
-#TODO: Add add_destination page
+
 @app.route('/add_destination', methods = ['GET', 'POST'])
 @is_admin
 def add_destination():
