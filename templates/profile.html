@@ -84,25 +84,28 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="card-title">Places Visited</div>
+                {% for destination in visiting_destinations %}
                         <!--This will be dynamically generated in the future-->
                         <!--Vellore-->
                     <div class="card horizontal">
                         <div class="card-image">
-                            <img src="/file/vellore_sample.png" alt="">
+                            <img src="/file/{{destination['image_src']}}" alt="">
                             
                         </div>
                         <div class="card-content">
-                           <div class="card-title">Vellore</div>
+                           <div class="card-title">{{destination['name']}}</div>
                             <p>
-                                Vellore is a city
-                                in the Indian state of Tamil Nadu. It is located on the banks of the Palar River in the northeastern part 
-                                of Tamil Nadu.
+                               {{destination['description']}}
                             </p>
+                            <form action="/add_user_to_destination" method="post">
+                                <input type="hidden" name="name" id="" value="{{destination['name']}}">
                             <button id="followbtn" onclick="signup()"
-                            class="btn-small waves-effect waves-dark red">Add</button>
+                            class="btn-small waves-effect waves-dark red" type="submit">Add</button>
+                            </form>
                         </div>
                 
                     </div>
+                    {% endfor %}
     
                      <!--Mumbai-->
                      <div class="card horizontal">
