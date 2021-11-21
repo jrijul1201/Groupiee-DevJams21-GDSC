@@ -161,6 +161,16 @@ def add_user_to_destination():
     flash('Added to Visiting', 'success')
     return redirect(url_for('destinations'))
 
+#TODO: implement deleting users from destination
+@app.route('delete_user_from_destination', methods = ['POST'])
+def delete_user_from_destination():
+    dest_name = request.form['name']
+    username = session['username']
+    mongo.db.destinations.update_one({'name': dest_name}, {'$pull': {'users': username}})
+    mongo.db.user_info.update_one({'username': username}, {'$pull':{'visiting': dest_name}})
+    flash('Removed from Visiting', 'success')
+    return redirect(url_for('destinations'))
+
 
 @app.route('/add_destination', methods = ['GET', 'POST'])
 @is_admin
