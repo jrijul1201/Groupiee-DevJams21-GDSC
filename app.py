@@ -66,7 +66,7 @@ def register():
 
     return render_template("signup.html")
 
-#TODO: Add a check for whether user is logged in 
+
 # The login page
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -106,6 +106,7 @@ def upload_files():
         mongo.save_file(image.filename, image)
     return render_template('upload_image.html')
 
+#TODO: Pass visiting places to the index
 # The dashboard
 @app.route('/index')
 @is_logged_in
@@ -116,6 +117,7 @@ def index():
     full_name = user_data.get('full_name')
     return render_template("index.html", username = full_name, pfp_src = pfp_src)
 
+#TODO: Pass visiting places to the profile
 # View profiles of other users
 @app.route('/profile/<username>')
 def profile(username):
@@ -144,10 +146,23 @@ def add_user_to_destination():
     flash('Added to Visiting', 'success')
     return redirect(url_for('destinations'))
 
-@app.route('/add_destination')
+#TODO: Add add_destination page
+@app.route('/add_destination', methods = ['GET', 'POST'])
 @is_admin
 def add_destination():
-    return
+    if request.method == 'POST':
+        name = request.form.get('name')
+        description = request.form.get('description')
+
+        image = request.files.get('image')
+        res = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
+                                                  for i in range(8))
+        image_src = res + image.filename
+        mongo.save_file(image_src, image)
+
+        mongo.db.destinations.insert_one({'name': name, 'description': description, 'image_src': image_src})
+
+    return render_template('add_destination.html')
 
 
 @app.route('/search_destination')

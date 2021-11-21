@@ -1,0 +1,34 @@
+ <!DOCTYPE html>
+ <html>
+    <head>
+ <!-- Gets the CKEditor which makes editing text for the articles better-->
+        <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+    </head> 
+
+<body>
+<form action="" method="post" enctype="multipart/form-data">
+    <label for="image">Image</label>
+    <input type="file" name="image">
+    <br>
+    <label for="name">Name</label>
+    <input type="text" name="name" id="">
+    <br>
+    <label for="description">Description</label>
+    <input type="text" name="description" id="editor">
+    <script>
+        CKEDITOR.replace('editor');
+    </script>
+    <br>
+    <button id="submitbtn" 
+                        class="btn-large waves-effect waves-dark" type="submit">Submit</button>
+                
+</form>
+</body>
+ </html>

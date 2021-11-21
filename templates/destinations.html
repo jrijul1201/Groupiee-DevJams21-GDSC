@@ -3,6 +3,8 @@
 <div>
     <form action="/add_user_to_destination" method="post">
     <h1><input type="hidden" name="name" value="{{destination['name']}}">{{destination['name']}}</h1>
+    <img src="/file/{{destination['image_src']}}" alt="">
+    <br>
     <button type="submit">Add to Visiting</button>
     </form>
     <br>
