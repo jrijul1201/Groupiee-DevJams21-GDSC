@@ -119,9 +119,10 @@ def index():
     visiting_list = user_data.get('visiting')
     # Get data from those place
     visiting_destinations = []
-    for i in visiting_list:
-        place_data = mongo.db.destinations.find_one({'name': i})
-        visiting_destinations.append(place_data)
+    if visiting_list:
+        for i in visiting_list:
+            place_data = mongo.db.destinations.find_one({'name': i})
+            visiting_destinations.append(place_data)
     return render_template("index.html", username = full_name, pfp_src = pfp_src, visiting_destinations = visiting_destinations)
 
 
@@ -138,9 +139,10 @@ def profile(username):
     visiting_list = user_data.get('visiting')
     # Get data from those place
     visiting_destinations = []
-    for i in visiting_list:
-        place_data = mongo.db.destinations.find_one({'name': i})
-        visiting_destinations.append(place_data)
+    if visiting_list:
+        for i in visiting_list:
+            place_data = mongo.db.destinations.find_one({'name': i})
+            visiting_destinations.append(place_data)
 
     return render_template("profile.html", name = full_name, phone = phone, email = email, city = city, pfp_src = pfp_src, visiting_destinations = visiting_destinations)
 
