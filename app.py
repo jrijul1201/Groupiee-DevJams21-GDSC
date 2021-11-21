@@ -121,8 +121,11 @@ def add_user_to_destination():
     dest_name = request.form['name']
     username = session['username']
     mongo.db.destinations.update_one({'name': dest_name}, {'$addToSet': {'users': username}})
+    mongo.db.user_info.update_one({'username': username}, {'$addToSet':{'visiting': dest_name}})
     flash('Added to Visiting', 'success')
     return redirect(url_for('destinations'))
+
+
 
 
 @app.route('/search_destination')
