@@ -45,7 +45,9 @@ function Search(){
                     20:00
                 </div>
                 <div class="col m3">
-                    Rs 1000
+                <button
+                class="btn-large waves-effect waves-dark red" type="submit"><a class="white-text" href="https://${airline[i].websiteUrl}" target="_blank">Check out!</a></button>
+                
                 </div>
             </div>
             

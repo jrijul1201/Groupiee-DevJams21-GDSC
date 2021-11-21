@@ -30,8 +30,14 @@ function onMouseClick(e){
     fetch(`https://nominatim.openstreetmap.org/reverse?lat=${e.latlng.lat}&lon=${e.latlng.lng}&format=json`)
     .then(response=>response.json())
     .then(data=>{
+        console.log(data)
           marker.bindPopup(`Country: ${data.address.country}<br>City: ${data.address.city?data.address.city:'Unknown'}`).openPopup();
+          document.getElementById("searchbar").value=`${data.address.state?data.address.state:'Unknown'},${data.address.country?data.address.country:'Unknown'}`
     })
+    .catch(err=>{
+        marker.bindPopup(`Unable to geocode!`).openPopup();
+    }
+ )
 
     
 }
