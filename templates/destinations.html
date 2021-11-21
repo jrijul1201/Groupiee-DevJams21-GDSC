@@ -1,6 +1,7 @@
+{% include '/includes/_messages.html' %}
 {% for destination in destinations %}
 <div>
-    <form action="" method="post">
+    <form action="/add_user_to_destination" method="post">
     <h1><input type="hidden" name="name" value="{{destination['name']}}">{{destination['name']}}</h1>
     <button type="submit">Add to Visiting</button>
     </form>

@@ -116,6 +116,14 @@ def destinations():
         app.logger.info(request.form['name'])
     return render_template('destinations.html', destinations = destinations)
 
+@app.route('/add_user_to_destination', methods = ['POST'])
+def add_user_to_destination():
+    dest_name = request.form['name']
+    username = session['username']
+    mongo.db.destinations.update_one({'name': dest_name}, {'$addToSet': {'users': username}})
+    flash('Added to Visiting', 'success')
+    return redirect(url_for('destinations'))
+
 
 @app.route('/search_destination')
 @is_logged_in
