@@ -1,8 +1,7 @@
 Talk.ready.then(function () {
     var me = new Talk.User({
-      id: 'alice@example.com',
-      name: 'Alice',
-      email: 'alice@example.com',
+      id: localStorage.getItem('groupiee_uname'),
+      name: localStorage.getItem('groupiee_uname'),
       photoUrl: 'https://demo.talkjs.com/img/alice.jpg',
       welcomeMessage: 'Hey there! How are you? :-)',
     });
@@ -11,10 +10,9 @@ Talk.ready.then(function () {
       me: me,
     });
     var other = new Talk.User({
-      id: 'Sebastian@example.com',
-      name: 'Sebastian',
-      email: 'Sebastian@example.com',
-      photoUrl: 'https://demo.talkjs.com/img/sebastian.jpg',
+      id: document.getElementById('uname').innerText,
+      name: document.getElementById('uname').innerText,
+      photoUrl: '/file/{{pfp_src}}',
       welcomeMessage: 'Hey, how can I help?',
     });
   
