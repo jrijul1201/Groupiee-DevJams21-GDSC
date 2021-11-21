@@ -34,7 +34,7 @@
                         </div>
                         
                         <div class="form-field center">
-                            <button id="submitbtn" onclick="signup()"
+                            <button id="submitbtn"
                             class="btn-large waves-effect waves-dark red" type="submit">Submit</button>
                             
                         </div>
@@ -43,6 +43,12 @@
                 </form>
             </div>
         </div>
+        <script>
+            var submitbtn=document.getElementById('submitbtn')
+            submitbtn.addEventListener('click',()=>{
+                localStorage.setItem('groupiee_uname',document.getElementById('uname').value)
+            })
+        </script>
         <!--To be shown incase an error occures-->
 
                     {% include 'includes/_messages.html' %}
