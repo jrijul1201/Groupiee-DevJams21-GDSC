@@ -37,9 +37,9 @@
           <i class="large material-icons">flight_takeoff</i>
         </a>
       </div>
-
+<!--1st column-->
     <div class="row">
-        <div class="col s12 m5">
+        <div class="col s12 m4">
         
             <div class="card">
                 <div class="card-image">
@@ -64,8 +64,8 @@
             </div>
         
         </div>
-        
-        <div class="col m5">
+        <!--2nd column-->
+        <div class="col s12 m4">
 
             <div class="row">
                 <!--Showing potential travel buddies-->
@@ -152,7 +152,27 @@
         
         
         </div>
-
+<!--3rd column-->
+        <div class="col s12 m4">
+            <!--Planning to visit-->
+            <div class="row">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">Planning to Visit</div>
+                    </div>
+                    {% for destination in visiting_destinations %}
+                    <div class="card horizontal">
+                        <div class="card-content">
+                            <div class="card-title">
+                                {{destination['name']}}
+                            </div>
+                            {{destination['description']}}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
         
 
 
