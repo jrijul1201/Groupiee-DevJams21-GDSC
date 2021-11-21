@@ -21,7 +21,7 @@ def is_logged_in(f):
         if 'logged_in' in session:
             return f(*args, **kwargs)
         else:
-            flash('Unauthorized, please login', 'danger')
+            flash('You must login to continue!', 'danger')
             return redirect(url_for('login'))
     return wrap
 
@@ -88,8 +88,8 @@ def file(filename):
     return mongo.send_file(filename)
 
 # The dashboard
-@is_logged_in
 @app.route('/index')
+@is_logged_in
 def index():
     username = session['username']
     user_data = mongo.db.user_info.find_one({'username': username})
@@ -97,6 +97,7 @@ def index():
     full_name = user_data.get('full_name')
     return render_template("index.html", username = full_name, pfp_src = pfp_src)
 
+# View profiles of other users
 @app.route('/profile/<username>')
 def profile(username):
     user_data = mongo.db.user_info.find_one({'username': username})
@@ -106,6 +107,17 @@ def profile(username):
     city = user_data.get('city')
     pfp_src = user_data.get('pfp_src')
     return render_template("profile.html", name = full_name, phone = phone, email = email, city = city, pfp_src = pfp_src)
+
+@app.route('/search_destination')
+@is_logged_in
+def search_destination():
+    return render_template('search.html')
+
+@app.route('/bookings')
+@is_logged_in
+def bookings():
+    return render_template('bookings.html')
+
 
 # Running the program
 if __name__ == '__main__':
