@@ -108,6 +108,15 @@ def profile(username):
     pfp_src = user_data.get('pfp_src')
     return render_template("profile.html", name = full_name, phone = phone, email = email, city = city, pfp_src = pfp_src)
 
+@app.route('/destinations', methods = ['GET', 'POST'])
+@is_logged_in
+def destinations():
+    destinations = mongo.db.destinations.find()
+    if request.method == 'POST':
+        app.logger.info(request.form['name'])
+    return render_template('destinations.html', destinations = destinations)
+
+
 @app.route('/search_destination')
 @is_logged_in
 def search_destination():
