@@ -25,6 +25,17 @@ def is_logged_in(f):
             return redirect(url_for('login'))
     return wrap
 
+# Check if user is admin
+def is_admin(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if session['username'] == 'admin':
+            return f(*args, **kwargs)
+        else:
+            flash('You must be admin to continue!', 'danger')
+            return redirect(url_for('login'))
+    return wrap
+
 # The home page
 @app.route('/')
 def home():
@@ -86,6 +97,13 @@ def login():
 @app.route('/file/<filename>')
 def file(filename):
     return mongo.send_file(filename)
+
+@app.route('/upload_files', methods = ['GET', 'POST'])
+@is_admin
+def upload_files():
+    if request.method == 'POST':
+        mongo.save_file(request.files['image'])
+    return render_template('upload_image.html')
 
 # The dashboard
 @app.route('/index')
