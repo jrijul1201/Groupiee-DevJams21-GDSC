@@ -162,7 +162,7 @@ def add_user_to_destination():
     return redirect(url_for('destinations'))
 
 #TODO: implement deleting users from destination
-@app.route('delete_user_from_destination', methods = ['POST'])
+@app.route('/delete_user_from_destination', methods = ['POST'])
 def delete_user_from_destination():
     dest_name = request.form['name']
     username = session['username']
