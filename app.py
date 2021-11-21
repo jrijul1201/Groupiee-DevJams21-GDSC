@@ -102,7 +102,8 @@ def file(filename):
 @is_admin
 def upload_files():
     if request.method == 'POST':
-        mongo.save_file(request.files['image'])
+        image = request.files['image']
+        mongo.save_file(image.filename, image)
     return render_template('upload_image.html')
 
 # The dashboard
@@ -143,7 +144,10 @@ def add_user_to_destination():
     flash('Added to Visiting', 'success')
     return redirect(url_for('destinations'))
 
-
+@app.route('/add_destination')
+@is_admin
+def add_destination():
+    return
 
 
 @app.route('/search_destination')
