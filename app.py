@@ -47,8 +47,8 @@ def is_admin(f):
 # The home page
 @app.route('/')
 def home():
-    return redirect(url_for('login'))
-    #return render_template("home.html")
+    #return redirect(url_for('login'))
+    return render_template("home.html")
 
 # The sign up page
 @app.route('/register', methods = ['GET', 'POST'])
