@@ -21,9 +21,11 @@
         <div class="nav-wrapper blue lighten-1">
             <a href="#" class="brand-logo">Groupiee</a>
             <ul id="nav-mobile" class="right">
-                <li><a href="/search_destination">Destinations</a></li>
-                <li><a href="/index">Home</a></li>
-                <!--Sign in buttons-->
+                
+                <li><a href="/index">Home</a></li> 
+                <li><a href="/destinations">Destinations</a></li>
+                <li><a href="/search_destination">Search</a></li>
+                <!--Sign in button-->
                 {% if session['logged_in'] == False %}
                 <li style="padding-bottom: 5px;padding-top: 5px;"><a href="login" style="background-color: red; border-radius: 20%; height: 55px;">Sign in</a></li>
                 {% endif %}
