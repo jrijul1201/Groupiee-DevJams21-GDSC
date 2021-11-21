@@ -67,7 +67,10 @@
             </form>
         </div>
         <!--To be shown incase an error occures-->
-      <div id="err" class="col s12 m4 offset-m4">
+
+        {% include 'includes/_messages.html' %}
+        
+        <div id="err" class="col s12 m4 offset-m4">
             <div class="card green white-text">
                 <div class="card-content">
                     Already registered? <a href="/login" class="white-text"><u>Login</u></a>

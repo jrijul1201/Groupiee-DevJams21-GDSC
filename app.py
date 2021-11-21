@@ -61,6 +61,14 @@ def register():
         phone = request.form['phoneno']
         city = request.form['city']
 
+        if mongo.db.user_info.find({'username': username}):
+            flash('Username is taken!', 'danger')
+            return render_template('signup.html')
+
+        if mongo.db.user_info.find({'email': email}):
+            flash('Email is already in use for another account', 'danger')
+            return render_template('signup.html')
+
         # Save profile pic file
         pfp = request.files['profile_image']
         res = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
@@ -135,7 +143,7 @@ def index():
 
 
 # View profiles of other users
-@app.route('/profile/<username>')
+@app.route('/profile/<username>', methods = ['GET', 'POST'])
 def profile(username):
     user_data = mongo.db.user_info.find_one_or_404({'username': username})
     full_name = user_data.get('full_name')
