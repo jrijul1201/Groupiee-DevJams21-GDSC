@@ -151,6 +151,13 @@ def verify_user():
 
         return render_template('verify_user.html')
 
+# Logout
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('You are now logged out', 'success')
+    return redirect(url_for('login'))
+
 # For admins to verify users
 @app.route('/admin_verify_users', methods = ['GET', 'POST'])
 @is_logged_in
