@@ -55,7 +55,10 @@ python3 ./app.py
 - rapid api for listing the flights
 
 # Admin Controls
-
+## Admin creds
+username: `admin` <br>
+password: '`admin`<br>
+For testing only <br>
 ## Verifying users
 `/admin_verify_users`
 This will bring up a list of users and their verification details
