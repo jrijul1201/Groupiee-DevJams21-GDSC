@@ -46,3 +46,12 @@ Run the app.py file either from your preferred IDE or using
 ```
 python3 ./app.py
 ```
+# Admin Controls
+## Logging in
+Login as admin with password admin
+## Verifying users
+`/admin_verify_users`
+This will bring up a list of users and their verification details
+## Adding destinations manually
+`/add_destination`
+This will let you add destinations manually with a display picture

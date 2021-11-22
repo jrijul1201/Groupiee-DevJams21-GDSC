@@ -69,12 +69,15 @@ def register():
         phone = request.form['phoneno']
         city = request.form['city']
 
-        if mongo.db.user_info.find({'username': username}):
+        if username in mongo.db.user_info.find({'username': username}):
             flash('Username is taken!', 'danger')
+            app.logger.info('username taken')
+            app.logger.info(mongo.db.user_info.find({'username': username}))
             return render_template('signup.html')
 
-        if mongo.db.user_info.find({'email': email}):
+        if email in mongo.db.user_info.find({'email': email}):
             flash('Email is already in use for another account', 'danger')
+            app.logger.info('email taken')
             return render_template('signup.html')
 
         # Save profile pic file
@@ -119,6 +122,7 @@ def login():
 
     return render_template("login.html")
 
+# Link for users to submit verification details
 @app.route('/verify_user', methods = ['GET', 'POST'])
 def verify_user():
     if session.get('verified'):
@@ -146,6 +150,18 @@ def verify_user():
             return redirect(url_for('index'))
 
         return render_template('verify_user.html')
+
+# For admins to verify users
+@app.route('/admin_verify_users', methods = ['GET', 'POST'])
+@is_logged_in
+@is_admin
+def admin_verify_users():
+    users = mongo.db.verification.find()
+    if request.method == 'POST':
+        username = request.form.get('username')
+        mongo.db.user_info.update_one({'username': username}, {'$set':{'verified': True}})
+        mongo.db.verification.delete_one({'username': username})
+    return render_template('admin_verify_users.html', users = users)
 
 # Link to images
 @app.route('/file/<filename>')
