@@ -1,6 +1,6 @@
 # Groupiee-DevJams21-GDSC
 ### Link for website
-https://groupiee-mrow.herokuapp.com/
+https://groupiee-mrow.herokuapp.com/ <br>
 Note: Some parts of the website are running on test apis(namely the chat API)
 
 # About Groupiee
@@ -45,14 +45,17 @@ Run the app.py file either from your preferred IDE or using
 ```
 python3 ./app.py
 ```
-### Javascript
-- TalkJS
-- Materializecss
-- 
+### Frontend
+- [Materializecss](https://materializecss.com/)
+
+### APIs
+- [TalkJS chat API](https://talkjs.com/)
+- [nominatim geocoding api](https://nominatim.org/release-docs/latest/api/Search/)
+- [Leaflet.js map renderer](https://leafletjs.com/)
+- rapid api for listing the flights
 
 # Admin Controls
-## Logging in
-Login as admin with password admin
+
 ## Verifying users
 `/admin_verify_users`
 This will bring up a list of users and their verification details
