@@ -11,7 +11,7 @@ import string
 
 # Configuration
 app = Flask(__name__)
-app.config['MONGO_URI'] = "mongodb+srv://Wahhaj:3DS8ai8B7j7f989@cluster0.4eydy.mongodb.net/users_devjams21?retryWrites=true&w=majority"
+app.config['MONGO_URI'] = "YOUR MONGODB URI HERE"
 mongo = PyMongo(app)
 
 #TODO: Verify Usersm
