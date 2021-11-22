@@ -60,6 +60,9 @@
                      class="btn-small waves-effect waves-dark red">
                      <a class="white-text" href="mailto: testemail@gmail.com"> Email</a></button>-->
                     <br>
+                    {% if not session['verified']%}
+                    <button type="button" class="btn btn-small green"><a href="/verify_user" class="white-text">Verify your identity</a></button>
+                    {% endif %}
                    
                 </div>
         

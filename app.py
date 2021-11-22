@@ -14,13 +14,10 @@ app = Flask(__name__)
 app.config['MONGO_URI'] = "mongodb+srv://Wahhaj:3DS8ai8B7j7f989@cluster0.4eydy.mongodb.net/users_devjams21?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
-#TODO: Verify Users
+#TODO: Verify Usersm
 #TODO: Functional prototype instead of basic web app with mock data
-#TODO: DMs
 #TODO: Make posts for each user
-#TODO: Add delete button for places in profile
-#TODO: Make the ADD button function for places in user profiles
-#TODO: Make the profile list places visiting
+
 
 # Check if user is logged in
 def is_logged_in(f):
@@ -42,6 +39,17 @@ def is_admin(f):
         else:
             flash('You must be admin to continue!', 'danger')
             return redirect(url_for('login'))
+    return wrap
+
+# Check if user is verified
+def is_verified(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if session['verified'] == True:
+            return f(*args, **kwargs)
+        else:
+            flash('You must be verified to continue!', 'danger')
+            return redirect(url_for('verify_user'))
     return wrap
 
 # The home page
@@ -75,7 +83,7 @@ def register():
                                                   for i in range(4))
         pfp_src = username + res + pfp.filename
         mongo.save_file(pfp_src, pfp)
-        mongo.db.user_info.insert_one({'username': username, 'password': password, 'full_name': full_name ,'email': email, 'phone': phone, 'city': city, 'date_of_join': datetime.now(), 'pfp_src': pfp_src})
+        mongo.db.user_info.insert_one({'username': username, 'password': password, 'full_name': full_name ,'email': email, 'phone': phone, 'city': city, 'date_of_join': datetime.now(), 'pfp_src': pfp_src, 'verified': False})
         
         # Redirect user to login
         return redirect(url_for('login'))
@@ -100,6 +108,7 @@ def login():
         if pwd and sha256_crypt.verify(pwd_candidate, pwd):
             session['username'] = username
             session['logged_in'] = True
+            session['verified'] = user_data.get('verified')
             return redirect(url_for('index'))
         
         else:
@@ -109,6 +118,34 @@ def login():
 
 
     return render_template("login.html")
+
+@app.route('/verify_user', methods = ['GET', 'POST'])
+def verify_user():
+    if session.get('verified'):
+        return redirect(url_for('index'))
+    else:
+        if request.method == 'POST':
+            username = session['username']
+            user_data = mongo.db.user_info.find_one({'username': username})
+            full_name = user_data.get('full_name')
+
+            res1 = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
+                                                  for i in range(8))
+            id_document = request.files.get('id_document')
+            id_document_src = res1 + username + id_document.filename
+            mongo.save_file(id_document_src, id_document)
+
+            res2 = ''.join(secrets.choice(string.ascii_uppercase + string.digits)
+                                                  for i in range(8))
+            id_selfie = request.files.get('id_selfie')
+            id_selfie_src = res2 + username + id_selfie.filename
+            mongo.save_file(id_selfie_src, id_selfie)
+
+            mongo.db.verification.insert_one({'username': username, 'full_name': full_name, 'id_document_src' :id_document_src, 'id_selfie_src': id_selfie_src})
+            flash('Your account will be verified soon', 'success')
+            return redirect(url_for('index'))
+
+        return render_template('verify_user.html')
 
 # Link to images
 @app.route('/file/<filename>')
@@ -163,6 +200,7 @@ def profile(username):
     return render_template("profile.html", name = full_name, phone = phone, email = email, city = city, pfp_src = pfp_src, visiting_destinations = visiting_destinations)
 
 @app.route('/destinations', methods = ['GET', 'POST'])
+@is_verified
 @is_logged_in
 def destinations():
     destinations = mongo.db.destinations.find()
@@ -211,6 +249,7 @@ def add_destination():
 
 @app.route('/search_destination', methods = ['GET', 'POST'])
 @is_logged_in
+@is_verified
 def search_destination():
     if request.method == 'POST':
         # Create destination
@@ -232,6 +271,7 @@ def search_destination():
 
 @app.route('/bookings')
 @is_logged_in
+@is_verified
 def bookings():
     return render_template('bookings.html')
 

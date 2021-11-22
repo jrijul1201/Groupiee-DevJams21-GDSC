@@ -18,43 +18,34 @@
         <title>Groupiee</title>
     </head>
 <body>
-    <!--SignUp form-->
+    <h5 class="center-align">You must be verified to access the rest of the website</h5>
+    <!--Verify-->
     <div class="row">
         <div id='form' class="col s12 m4 offset-m4"> 
             <form action="" method="post" enctype="multipart/form-data">
             <div class="card">
                 <div class="card-action blue lighten-1 white-text">
-                    <h3>SignUp</h3>
+                    <h3>Verify your Identity</h3>
                 </div>
                 <div class="card-content">
-                    <div class="form-field">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name = "email">
-                    </div>
-                    <div class="form-field">
-                        <label for="uname">Username:</label>
-                        <input type="text" id="uname" name = "uname">
-                    </div>
-                    <div class="form-field">
-                        <label for="name">Full name:</label>
-                        <input type="text" id="name" name = "name">
-                    </div>
-                    <div class="form-field">
-                        <label for="password" >Password:</label>
-                    <input type="password" id="pwd" name = "pwd">
-                    </div>
-                    <div class="form-field">
-                        <label for="phoneno" >Phone:</label>
-                    <input type="tel" id="phoneno" name = "phoneno">
-                    </div>
-                    <div class="form-field">
-                        <label for="city" >City:</label>
-                    <input type="text" id="city" name = "city">
-                    </div>
-                    <div class="form-field">
+                    <div>
+                        <div class="form-field">
+                       
                         
-                        <label for="profile_image">Profile Pic:</label>
-                        <input type="file" name="profile_image" enctype >
+                        <label for="profile_image">Submit a picture of your Aadhaar Card, Passport or Driver's License</label>
+                        <input type="file" name="id_document" enctype >
+                        <br>
+                    </div>
+                    </div>
+                    <div>
+                        <div class="form-field">
+                        
+                        
+                        <label for="profile_image">Submit a picture of yourself holding the document submitted above.
+                            The details of the document must be clearly seen. Only your face is needed to be visible</label>
+                        <input type="file" name="id_selfie" enctype >
+                        <br>
+                    </div>
                     </div>
                     <div class="form-field center">
                         <button type="submit" id="submitbtn" onclick="signup()"
@@ -68,15 +59,9 @@
         </div>
         <!--To be shown incase an error occures-->
 
+        {% include 'includes/_messages.html' %}
         
-        <div id="err" class="col s12 m4 offset-m4">
-            {% include 'includes/_messages.html' %}
-            <div class="card green white-text">
-                <div class="card-content">
-                    Already registered? <a href="/login" class="white-text"><u>Login</u></a>
-                </div>
-                </div>
-        </div>
+        
         
 
     </div>
