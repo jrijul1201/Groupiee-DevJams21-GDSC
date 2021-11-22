@@ -3,6 +3,10 @@
 https://groupiee-mrow.herokuapp.com/ <br>
 Note: Some parts of the website are running on test apis(namely the chat API)
 
+# Warning
+TO RUN THE PROJECT BE SURE TO PROVIDE YOUR RAPID API KEY(in the bookings.js)<br>
+AND THE MONGODB URI (in the app.py)
+
 # About Groupiee
 
 Indeed, while traveling is something we all love to daydream about and even plan for weeks or even months in the making, the nitty-gritty parts of travel leave not much to be desired. If it were up to us, we would skip all the miserable and troublesome parts of travel altogether after all, who would want to go through all the hassle if you can skip right to the good part, right?
