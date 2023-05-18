@@ -19,7 +19,7 @@ function Search(){
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "priceline-com-provider.p.rapidapi.com",
-		"x-rapidapi-key": "RAPID API KEY"
+    "x-rapidapi-key": "bfc0111e49msh2ccb4541488125dp143bb0jsndfc24f539711"
 	}
 })
 .then(response => 
